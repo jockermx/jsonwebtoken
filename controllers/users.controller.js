@@ -24,7 +24,7 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
     console.log('--->>> findOne user: ' + req.body.username + ' - ' + req.body.password);
     User.findOne({username: req.body.username}).then(user => {
-        console.log(':::: user: ', user);
+        console.log(':::: user findOne: ', user);
         if(!user) {
             return res.status(404).send({
                 message: "Usuario no encontrado con el username: " + req.body.username

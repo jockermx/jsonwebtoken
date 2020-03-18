@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const userTokenController = require('../controllers/jwt.controller.js');
-const usersController = require('../controllers/users.controller.js');
+const jwtController = require('../controllers/jwt.controller.js');
 
 // crear token
-router.post('/new', userTokenController.create);
+router.post('/signup', jwtController.signup);
 
 // obtener token
-router.post('/getToken', usersController.findOne, userTokenController.getToken);
+router.post('/signin', jwtController.signin);
+
+// obtener token
+router.get('/getDataToken', jwtController.getDataToken);
 
 module.exports = router;

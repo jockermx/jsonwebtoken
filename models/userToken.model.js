@@ -1,10 +1,18 @@
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const UserTokenSchema =   
-    mongoose.Schema({
-        _id: String,
+    new Schema({
         username: String,
+        email: String,
         password: String
-    });
+    }, {
+    timestamps: true
+});
 
-module.exports = mongoose.model('tokens', UserTokenSchema);
+UserTokenSchema.methods.encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(password, salt);
+}
+
+module.exports = model('users', UserTokenSchema);

@@ -3,7 +3,7 @@ var router = express.Router();
 const userController = require('../controllers/users.controller.js');
 
 // crear usuario
-router.post('/new', userController.create);
+router.post('/add', userController.create);
 
 // actualizar usuario por userId
 router.put('/users/:userId', userController.update);
